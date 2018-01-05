@@ -1,0 +1,46 @@
+
+<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js">
+</script>
+<h1>
+  Image:
+</h1>
+<canvas id="can"></canvas>
+<p>
+  <input type="file" multiple="false" accept="image/*" id="finput" onchange="upload()">
+  
+  <!-- is used to display an alert message that the value entered in the "text" input has been uploaded
+  <input type="text" id="finput">
+  <input type="button" value="Upload" onclick="upload()">
+  -->
+</p>
+
+body{
+  font-family:20 px Arial;
+  color:blue;
+  margin:20px;
+}
+h1{
+  text-align:center;
+  color:Blue;
+}
+canvas{
+  width:300px;
+  height:150px;
+  border: 1px solid gray;
+}
+
+input{
+  font-size:15pt;
+}
+
+
+function upload(){
+  var fileinput=document.getElementById("finput");
+  /* Display an alert message
+  var filename=fileinput.value;
+  alert('Chose '+filename);
+  */
+  var image=new SimpleImage(fileinput);
+  var imgcanvas=document.getElementById("can");
+  image.drawTo(imgcanvas);
+}
