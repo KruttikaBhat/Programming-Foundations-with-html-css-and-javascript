@@ -1,0 +1,84 @@
+Has been executed at https://codepen.io/kix47/pen/VyvboQ
+
+HTML part 
+
+<h1>
+  Using canvas
+</h1>
+
+<canvas id="d1" class="orangeback"></canvas>
+ 
+<canvas id="d2" class="fuchsiaback"></canvas>
+<input type="button" 
+       value="Change color"
+       onclick="changeColors()">
+
+<input type="button" value="Do green" onclick="doGreen()">
+
+<input type="button" value="Do yellow" onclick="doYellow()">
+
+CSS part
+
+h1{
+  color:"green";
+}
+
+canvas{
+  width:200px;
+  height:75px;
+  padding:5pt;
+  margin:5px;
+  border:1px solid black;
+  font-family:Arial;
+}
+
+#d1{
+  font-size:18px;
+}
+
+#d2{
+  font-size:18px;
+}
+
+.orangeback{
+  background-color:orange;
+}
+
+.fuchsiaback{
+  background-color:fuchsia;
+}
+
+.blueback{
+  background-color:blue;
+}
+
+.yellowback{
+  background-color:yellow;
+}
+
+JavaScript part
+
+function changeColors(){
+  var dd1=document.getElementById("d1");
+  dd1.className="blueback";
+  var dd2=document.getElementById("d2");
+  dd2.className="yellowback";
+}
+
+function doGreen(){
+  var dd1=document.getElementById("d1");
+  var ctx=dd1.getContext("2d");
+  ctx.clearRect(0,0,dd1.width,dd1.height);
+  dd1.style.backgroundColor="lime";
+}
+
+function doYellow(){
+  var dd1=document.getElementById("d1");
+  var ctx=dd1.getContext("2d");
+  ctx.fillStyle="yellow";
+  ctx.fillRect(10,10,40,40);
+  ctx.fillRect(60,10,40,40);
+  ctx.fillStyle="black";
+  ctx.font="15px Arial";
+  ctx.fillText('Hello',15,45);
+}
