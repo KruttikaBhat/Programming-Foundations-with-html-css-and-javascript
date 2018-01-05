@@ -1,0 +1,39 @@
+Has been executed at https://codepen.io/kix47/pen/Vyvevo
+
+HTML part
+
+<h1>
+  Buttons
+</h1>
+<div id="d1">Div1</div>
+<div id="d2">Div2</div>
+<p>
+  <input type="button" value="button" onclick="alert('clicked')">
+</p>
+
+CSS part
+
+
+h1{
+  color:"green";
+  padding:20px;
+}
+
+div{
+  width:200px;
+  padding:10pt;
+  margin:5px;
+  border:1px solid black;
+  font-family:Arial;
+}
+
+#d1{
+  font-size:20px;
+  background:lightblue; 
+ 
+}
+
+#d2{
+  font-size:15px;
+  background:yellow;
+}
