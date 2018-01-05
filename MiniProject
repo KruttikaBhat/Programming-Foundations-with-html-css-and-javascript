@@ -1,0 +1,206 @@
+Has been executed at https://codepen.io/kix47/pen/goavZK
+
+HTML part
+
+<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js">
+</script>
+<h1>
+  Filter Fun
+</h1>
+<canvas id="can"></canvas>
+<h2>
+  Load image
+</h2>
+<p>
+  <input type="file" multiple="false" accept="image/*" id="finput" onchange="upload()">
+</p>
+<h2>
+  Choose Filter
+</h2>
+<p>
+  <input type="button" value="grayscale" onclick="grayscale()">
+  <input type="button" value="red" onclick="red()">
+  <input type="button" value="rainbow" onclick="rainbow()">
+</p>
+<p>
+  <input type="button" value="reset" onclick="clearFilter()">
+</p>
+
+CSS part
+
+body{
+  background-color:#42ebf4;
+}
+
+canvas{
+  border:1px solid gray;
+  width:300px;
+  height:150px;
+}
+
+h1{
+  text-align:center;
+  font:Didot, serif;
+  color:#f44274;
+}
+
+h2{
+  color:#9b41f4;
+}
+input{
+ font:20pts; 
+}
+
+JavaScript part
+
+var img=null;
+var changedimage=null;
+var imgcanvas;
+
+function upload(){
+  var imgfile=document.getElementById("finput");
+  img=new SimpleImage(imgfile);
+  changedimage=new SimpleImage(imgfile);
+  imgcanvas=document.getElementById("can");
+  img.drawTo(imgcanvas); 
+}
+
+function grayscale(){
+ check(changedimage);
+    for(var pixel of changedimage.values()){
+    var avg=(pixel.getRed()+pixel.getBlue()+pixel.getGreen())/3;
+    pixel.setRed(avg);
+    pixel.setGreen(avg);
+    pixel.setBlue(avg);
+  }
+  
+  changedimage.drawTo(imgcanvas);
+}
+
+
+function check(image){
+  if(image==null||!image.complete()){
+    alert("image isn't loaded");
+    return;
+  }
+  else{
+    return;
+  }
+}
+
+
+function red(){
+  check(changedimage);
+    for(var pixel of changedimage.values()){
+      var avg=(pixel.getRed()+pixel.getBlue()+pixel.getGreen())/3;
+      if(avg<128){
+        pixel.setRed(2*avg);
+    pixel.setGreen(0);
+    pixel.setBlue(0);
+      }
+      else{
+        pixel.setRed(255);
+    pixel.setGreen(2*avg-255);
+    pixel.setBlue(2*avg-255);
+      }
+    
+  }  
+  changedimage.drawTo(imgcanvas);
+}
+
+function clearFilter(){
+  img.drawTo(imgcanvas);
+  for(var pixel of changedimage.values()){
+    var x=img.getX();
+    var y=img.getY();
+    var imagepixel=img.getPixel(x,y);
+    changedimage.setPixel(x,y,imagepixel);
+  }
+}
+
+function rainbow(){
+  check(changedimage);
+  var height=changedimage.getHeight();
+  var pixelY=pixel.getY();
+  var set=height/7;
+  for(var pixel of changedimage.values()){
+    var avg=(pixel.getRed()+pixel.getBlue()+pixel.getGreen())/3;
+    if(avg<128){
+      if(pixelY<=set){
+        pixel.setRed(2*avg);
+        pixel.setGreen(0);
+        pixel.setBlue(0);
+      }
+      else if(set<pixelY<=2*set){
+        pixel.setRed(2*avg);
+        pixel.setGreen(0.8*avg);
+        pixel.setBlue(0);
+      }
+      else if(2*set<pixelY<=3*set){
+        pixel.setRed(2*avg);
+        pixel.setGreen(2*avg);
+        pixel.setBlue(0);
+      }
+      else if(3*set<pixelY<=4*set){
+        pixel.setRed(0);
+        pixel.setGreen(2*avg);
+        pixel.setBlue(0);
+      }
+      else if(4*set<pixelY<=5*set){
+        pixel.setRed(0);
+        pixel.setGreen(0);
+        pixel.setBlue(2*avg);
+      }
+      else if(5*set<pixelY<=6*set){
+        pixel.setRed(0.8*avg);
+        pixel.setGreen(0);
+        pixel.setBlue(2*avg);
+      }
+      else{
+        pixel.setRed(1.6*avg);
+        pixel.setGreen(0);
+        pixel.setBlue(1.6*avg);
+      }
+      
+    }
+     else{
+      if(pixelY<=set){
+        pixel.setRed(255);
+        pixel.setGreen(2*avg-255);
+        pixel.setBlue(2*avg-255);
+      }
+      else if(set<pixelY<=2*set){
+        pixel.setRed(255);
+        pixel.setGreen(1.2*avg-51);
+        pixel.setBlue(2*avg-255);
+      }
+      else if(2*set<pixelY<=3*set){
+        pixel.setRed(255);
+        pixel.setGreen(255);
+        pixel.setBlue(2*avg-255);
+      }
+      else if(3*set<pixelY<=4*set){
+        pixel.setRed(2*avg-255);
+        pixel.setGreen(255);
+        pixel.setBlue(2*avg-255);
+      }
+      else if(4*set<pixelY<=5*set){
+        pixel.setRed(2*avg-255);
+        pixel.setGreen(2*avg-255);
+        pixel.setBlue(255);
+      }
+      else if(5*set<pixelY<=6*set){
+        pixel.setRed(1.2*avg-51);
+        pixel.setGreen(2*avg-255);
+        pixel.setBlue(255);
+      }
+      else{
+        pixel.setRed(0.4*avg+153);
+        pixel.setGreen(2*avg-255);
+        pixel.setBlue(0.4*avg+153);
+      }
+      
+    }
+  }
+  changedimage.drawTo(imgcanvas);
+}
