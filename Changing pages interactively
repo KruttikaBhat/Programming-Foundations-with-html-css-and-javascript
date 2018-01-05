@@ -1,0 +1,63 @@
+Has been executed at https://codepen.io/kix47/pen/jYbWLY
+
+HTML part
+
+<h1>
+  Buttons
+</h1>
+<div id="d1" class="orangeback">Div1</div>
+<div id="d2" class="fuchsiaback">Div2</div>
+<p>
+<input type="button" 
+       value="Change color"
+       onclick="changecolor()">
+</p>
+
+CSS part 
+
+
+h1{
+  color:"green";
+}
+
+div{
+  width:200px;
+  padding:10pt;
+  margin:5px;
+  border:1px solid black;
+  font-family:Arial;
+}
+
+#d1{
+  font-size:18px;
+}
+
+#d2{
+  font-size:18px;
+}
+
+.orangeback{
+  background-color:orange;
+}
+
+.fuchsiaback{
+  background-color:fuchsia;
+}
+
+.blueback{
+  background-color:blue;
+}
+
+.yellowback{
+  background-color:yellow;
+}
+
+Javascript part
+
+function changecolor(){
+  var div1=document.getElementById("d1");
+  var div2=documnet.getElementById("d2");
+  
+  div1.className="blueback";
+  div2.className="yellowback";
+}
