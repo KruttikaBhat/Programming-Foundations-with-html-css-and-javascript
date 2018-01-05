@@ -1,0 +1,91 @@
+Has been executed at https://codepen.io/kix47/pen/zpvEeB
+
+HTML part
+
+<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js">
+</script>
+<h1>
+  Green Screen:
+</h1>
+<canvas id="can1"></canvas>
+<canvas id="can2"></canvas>
+<p>
+  <input type="file" multiple="false" accept="image/*" id="fgimage" onchange="fgimageUpload()">
+   <input type="file" multiple="false" accept="image/*" id="bgimage" onchange="bgimageUpload()">
+</p>
+<p>
+  <input type="button" value="Create composite" onclick="greenScreen()">
+  <input type="button" value="clear" onclick="clearCanvas()">
+</p>
+
+CSS part
+
+body{
+  background-color:pink;
+}
+h1{
+  text-align:center;
+}
+canvas{
+  width:400px;
+  height:300px;
+  border: 1px solid gray;
+}
+
+JavaScript part
+
+var fgimage=null;
+var bgimage=null;
+var fgcan;
+var bgcan;
+
+function fgimageUpload(){
+   var imagefile=document.getElementById("fgimage");
+  fgimage=new SimpleImage(imagefile);
+  fgcan=document.getElementById("can1");
+  fgimage.drawTo(fgcan);
+}
+
+function bgimageUpload(){
+   var imagefile=document.getElementById("bgimage");
+   bgimage=new SimpleImage(imagefile);
+  bgcan=document.getElementById("can2");
+  bgimage.drawTo(bgcan);
+}
+
+function clearCanvas(){
+  var ctx=fgcan.getContext("2d");
+  ctx.clearRect(0,0,fgcan.width,fgcan.height);
+  var ctx2=bgcan.getContext("2d");
+  ctx2.clearRect(0,0,bgcan.width,bgcan.height);
+}
+
+
+
+function greenScreen(){
+  if(fgimage===null||!fgimage.complete()){
+    alert("foreground image not loaded");
+    
+  }
+  if(bgimage===null||!bgimage.complete()){
+    alert("background image not loaded");
+   
+  }
+  clearCanvas();
+
+  var output=new SimpleImage(fgimage.getWidth(),fgimage.getHeight());
+  
+  for(var pixel of fgimage.values()){
+   var x=pixel.getX();
+   var y=pixel.getY();   
+    if(pixel.getGreen()>(pixel.getRed()+pixel.getBlue())){
+   var bgpixel=bgimage.getPixel(x,y);
+     output.setPixel(x,y,bgpixel);
+    }
+else{
+  output.setPixel(x,y,pixel);
+}    
+  }
+  
+  output.drawTo(fgcan);
+}
