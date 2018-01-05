@@ -1,0 +1,46 @@
+Everything has been executed in codepen.io
+Can be seen at https://codepen.io/kix47/pen/NXGGaq
+
+
+HTML part
+
+<h1>Using a canvas</h1>
+
+<canvas id="d1">
+  
+</canvas>
+<p>
+  <input type="button" value="make lime" onclick="dolime()">
+   <input type="button" value="make yellow" onclick="doyellow()">
+  
+</p>
+
+CSS part
+
+
+canvas{
+  width:200px;
+  height:100px;
+  border:1px solid #c3c3c3;
+}
+
+JavaScript part:
+
+
+function dolime(){
+  var dd1=document.getElementById("d1");
+  dd1.style.backgroundColor="lime";
+}
+
+function doyellow(){
+  var dd1=document.getElementById("d1");
+  dd1.style.backgroundColor="white";
+  var ctx=dd1.getContext("2d");
+  ctx.fillStyle="yellow";
+  ctx.fillRect(10,10,40,40);
+  ctx.fillRect(60,10,40,40);
+  
+  ctx.fillStyle="black";
+  ctx.font="30px Arial";
+  ctx.fillText=("Hello",10,80);
+}
