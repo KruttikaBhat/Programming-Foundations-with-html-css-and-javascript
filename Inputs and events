@@ -1,0 +1,30 @@
+Has been executed at https://codepen.io/kix47/pen/NXGgpW
+
+HTML part
+
+<h1>Heading</h1>
+<canvas id="c1"></canvas>
+<input type="button" value="change color" onclick=changeColor()>
+<input type="color" value="#99ff33" onchange="docolor()" id="clr">
+
+CSS part
+
+#c1{
+  width:100px;
+  height:100px;
+  background:blue;
+}
+
+JavaScript part
+
+function docolor(){
+  var dd1=document.getElementById("c1");
+  var colorinput=document.getElementById("clr");
+  var color=colorinput.value;
+  dd1.style.backgroundColor=color;
+}
+
+function changeColor(){
+  var dd1=document.getElementById("c1");
+  dd1.style.backgroundColor="yellow";
+}
